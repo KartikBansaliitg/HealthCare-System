@@ -1,0 +1,13 @@
+.container {
+
+    background-image: url("iitg.jpg");
+
+    background-size: cover;
+
+    height: 100%;
+
+    z-index: 10;
+
+   
+
+}
