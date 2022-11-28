@@ -52,12 +52,8 @@ The portal includes:
       medicine(s)
    ● Keeping patients’ records up to date and storing their records in the system
       for future purposes.
-   ● Maintaining employee details which consist of details of doctors and nurses.
+   ● Maintaining employee details which consist of details of doctors, staff and nurses.
    ● Setting up a patient's medical appointment.
-   ● Search interface through which admin can access a patient's or any
-      employee’s record by his/her unique identifying id. Moreover, through this
-      admin can view the availability of the doctors for any particular patient or
-      nurse for any room allocated.
 
 Interfaces include:
     ● A Login screen for entering user id, password, and role (admin or patient or
@@ -66,9 +62,6 @@ Interfaces include:
     ● A Home Page showing the complete statistics of HMS and contains links to
        other pages of the portal.
     ● A Patient Registration Form to register a new patient into the system.
-    ● A Search Form to search any data by filling up a form which will provide you
-       complete control over the data you want to access and the way you want to
-       access it.
     ● A Medical Report which acts the same as the medical booklet of our hospital,
        containing the details of the patient, bills paid, tests were taken, method of
        diagnosis and prescription of the patient in any past or present issues.
@@ -77,34 +70,24 @@ Interfaces include:
 Explanation of ER Diagram
 
    ● Each patient is identified by a unique identifying id i.e patient id, name,
-     gender, email, date of birth, phone no, hostel, age, blood group, issue
-     concerning the patient, arrival date, and his/her covid status recorded.
-   ● A patient can either be recovered or non-recovered.
-   ● For each recovered patient discharge date is recorded. A non-recovered
-     patient can be allocated a room for which the start and end dates are
-     recorded.
+     gender, email, date of birth, phone no, hostel, age, blood group, arrival date recorded.
    ● Each room is uniquely identified by room id.
    ● Each employee is uniquely identified by employee id, name, email, phone no,
-       date of birth, age, address, joining date, work experience, gender, and status
-       which records the availability of a particular employee at a point in time.
-   ●   An employee can be either a doctor or a nurse.
-   ●   A doctor can either be visiting or permanent. Furthermore, for each doctor
-       specialisation and qualification are recorded.
+       date of birth, age, address, joining date, work experience, gender.
+   ●   An employee can be either a doctor, a nurse or staff member.
+   ●   Furthermore, for each doctor, specialisation and qualification are recorded.
+   ●   For each nurse, qualification is recorded.
+   ●   For each staff member, type is recorded.
    ●   For each nurse, the patient count is recorded.
    ●   There are several medicines available at the hospital. Each medicine is
        identified by its name, cost, and company.
    ●   A patient can avail of tests available at the hospital. Tests are uniquely
-       identified by
-
-       test id, name, and cost.
+       identified by test id, name, and cost.
    ●   Patient bills are recorded which are identified by bill date, medicines cost,
        tests cost, and total cost.
    ●   Each patient is assigned to a doctor. A patient can be assigned to several
        doctors and a doctor can be assigned to several patients.
-   ●   A patient can take medicines for which, the date on which the medicine is
-       bought and quantity is recorded.
-   ●   A patient can have several tests for which the test date is recorded.
-   ●   Each room is assigned a nurse.
+   ●   A patient can take medicines and can have several tests for which the test date is recorded.
    
    
 Logical Database Requirements
@@ -113,17 +96,17 @@ The proposed information system contains the following data tables in its databa
 collection
 
    ●   Patient
-   ●   Recovered
-   ●   Non-recovered
-   ●   Bills
-   ●   Tests
-   ●   Medicine
-   ●   Room
-   ●   Allocated room
    ●   Employee
    ●   Doctor
    ●   Nurse
-   
+   ●   Staff
+   ●   Tests
+   ●   Medicine
+   ●   Room
+   ●   Bill
+   ●   Appointment
+
+
    
 References
 
