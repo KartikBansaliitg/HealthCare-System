@@ -1,18 +1,18 @@
 # Healthcare Management System
 
-<h4>-A healthcare website that provides a smooth and efficient channel for patients to register themselves,
+"*"<h4>A healthcare website that provides a smooth and efficient channel for patients to register themselves,
 book appointments with doctors and access other basic medical services.</h4>
 <p> The implementation of HMS in our IITG Hospital will enable it to make decisions
 about the way they’re run, and the work they perform which will in turn help us treat
 patients in a better way, access their real-time reports, and other information, their
 past clinical data and more can be done quickly which will lead to best patient
 outcomes.</p>
-<h4>-Captured the requirement analysis using ER Diagram to convert it into suitable relations with keys and constraints.</h4>
+"*"<h4>-Captured the requirement analysis using ER Diagram to convert it into suitable relations with keys and constraints.</h4>
 <p>For more detailed explanation please refer to the Detailed Explanation of the project</p>
 
 ## Features
 
----
+"*"
 <p>For more feature please refer to the E-R Diagram of the project</p>
 
 
