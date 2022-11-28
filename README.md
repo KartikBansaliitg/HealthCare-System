@@ -1,14 +1,14 @@
 ## Healthcare Management Sysytem
 
 - <h4>A healthcare website that provides a smooth and efficient channel for patients to register themselves,        book appointments with doctors and access other basic medical services.</h4>
-<p> The implementation of HMS in our IITG Hospital will enable it to make decisions
+<pre>     The implementation of HMS in our IITG Hospital will enable it to make decisions
 about the way they’re run, and the work they perform which will in turn help us treat
 patients in a better way, access their real-time reports, and other information, their
 past clinical data and more can be done quickly which will lead to best patient
-outcomes.</p>
+outcomes.</pre>
 
 - <h4>Captured the requirement analysis using ER Diagram to convert it into suitable relations with keys and constraints.</h4>
-<p>For more detailed explanation please refer to the Detailed Explanation of the project</p>
+<p>For more detailed explanation please refer to the *Detailed_Explanation* of the project</p>
 
 ## Features
 
@@ -31,7 +31,6 @@ outcomes.</p>
 <img alt="MySQL" src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
 
 ## ER Diagram
-<img src="ER_diagram.png"/>
-
-<h>
-<p>To see the Screenshots of project go to the Screenshots folder of the repository.</p>
+<img src="ER_diagram.png" width="70%"/>
+___
+<p>To see the Screenshots of project go to the *Screenshots* folder of the repository.</p>
