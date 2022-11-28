@@ -12,7 +12,7 @@ outcomes.</p>
 
 ## Features
 
--
+---
 <p>For more feature please refer to the E-R Diagram of the project</p>
 
 
