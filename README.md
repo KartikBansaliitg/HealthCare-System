@@ -8,19 +8,20 @@ past clinical data and more can be done quickly which will lead to best patient
 outcomes.</p>
 
 - <h4>Captured the requirement analysis using ER Diagram to convert it into suitable relations with keys and constraints.</h4>
-<p>&nbsp&nbsp&nbsp&nbspFor more detailed explanation, please refer to the <i>Detailed_Explanation</i> of the project</p>
+<p>&nbsp&nbsp&nbsp&nbspFor more detailed explanation, please refer to the <i>Detailed_Explanation</i> of the repository.</p>
 
 ## Features
 
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-- A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-<p>&nbsp&nbsp&nbsp&nbsp For more feature, please refer to the <i>E-R Diagram</i> of the project</p>
+- A Login page for entering user id, password, and role (admin or patient or any employee). Access to further screens is based on the role of the user as they differ from role to role.
+- A Admin Page showing the complete statistics of HMS and contains links to other pages(Pharmacy, Pathology, Rooms, Employees, Generate bill) of the portal.
+- The patient can register himself/herself by filling up a registration form with his basic personal details. If the patient has previously visited the hospital then there is no need to register again.
+- The employee can register himself/herself by filling up a registration form with his basic personal details. If the employee has previously visited the hospital then there is no need to register again. There is some unique information to be filled in according to the employee's role(doctor, nurse, staff).
+- The patient can choose the doctor from the list of available doctors to book an appointment and mention the issue and symptoms.
+- The patient can also get a room based on his budget from the list of different types of rooms available.
+- The patient can also get medicines from the hospital and also undergo different tests present in the hospital.
+- The doctor can see all the appointments booked with him and accordingly provide the necessary treatment.
+
+<p>&nbsp&nbsp&nbsp&nbsp For more feature, please refer to the <i>E-R Diagram</i> of the repository.</p>
 
 
 ## TechStack Used
