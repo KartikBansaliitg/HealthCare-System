@@ -8,6 +8,13 @@ the hospital in a day, and maintaining their records safely is tedious yet impor
 To reduce this type of burden and to manage the financial, administration, and
 clinical aspects, the Health Care Management System came into existence.
 
+The implementation of HMS in our IITG Hospital will enable it to make decisions
+about the way they’re run, and the work they perform which will in turn help us treat
+patients in a better way, access their real-time reports, and other information, their
+past clinical data and more can be done quickly which will lead to best patient
+outcomes.
+
+
 
 Importance of having this system
 
