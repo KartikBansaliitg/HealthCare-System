@@ -8,7 +8,7 @@ past clinical data and more can be done quickly which will lead to best patient
 outcomes.</p>
 
 - <h4>Captured the requirement analysis using ER Diagram to convert it into suitable relations with keys and constraints.</h4>
-<p>&nbsp&nbsp&nbspFor more detailed explanation please refer to the *Detailed_Explanation* of the project</p>
+<p>&nbsp&nbsp&nbsp&nbspFor more detailed explanation please refer to the <i>Detailed_Explanation</i> of the project</p>
 
 ## Features
 
@@ -20,7 +20,7 @@ outcomes.</p>
 - A healthcare website that provides a smooth and efficient channel for patients to register themselves.
 - A healthcare website that provides a smooth and efficient channel for patients to register themselves.
 - A healthcare website that provides a smooth and efficient channel for patients to register themselves.
-<p>For more feature please refer to the E-R Diagram of the project</p>
+<p>&nbsp&nbsp&nbsp&nbsp For more feature please refer to the <i>E-R Diagram</i> of the project</p>
 
 
 ## TechStack Used
@@ -31,6 +31,6 @@ outcomes.</p>
 <img alt="MySQL" src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
 
 ## ER Diagram
-<img src="ER_diagram.png" width="70%"/>
+<img src="ER_diagram.png" height="70%"/>
 ___
-<p>To see the Screenshots of project go to the *Screenshots* folder of the repository.</p>
+<p>&nbsp&nbsp&nbsp&nbsp To see the Screenshots of project go to the <i>Screenshots</i> folder of the repository.</p>
