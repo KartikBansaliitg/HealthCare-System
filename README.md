@@ -33,4 +33,4 @@ outcomes.</p>
 ## ER Diagram
 <img src="ER_diagram.png" height="70%"/>
 ___
-<p>&nbsp&nbsp&nbsp&nbsp To see the Screenshots of project go to the <i>Screenshots</i> folder of the repository.</p>
+<p>&nbsp&nbsp&nbsp&nbsp To see the Screenshots of project go to the <a href="Screenshots"><i>Screenshots</i></a> folder of the repository.</p>
