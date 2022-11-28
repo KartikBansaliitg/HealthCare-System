@@ -1,6 +1,6 @@
-# Healthcare Management System
+## Healthcare Management Sysytem
 
---*<h4>A healthcare website that provides a smooth and efficient channel for patients to register themselves,
+-<h4>A healthcare website that provides a smooth and efficient channel for patients to register themselves,
 book appointments with doctors and access other basic medical services.</h4>
 <p> The implementation of HMS in our IITG Hospital will enable it to make decisions
 about the way they’re run, and the work they perform which will in turn help us treat
@@ -12,7 +12,7 @@ outcomes.</p>
 
 ## Features
 
-"*"
+-
 <p>For more feature please refer to the E-R Diagram of the project</p>
 
 
