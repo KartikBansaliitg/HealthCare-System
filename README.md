@@ -12,9 +12,8 @@ outcomes.</p>
 
 ## Features
 
--<h4>A healthcare website that provides a smooth and efficient channel for patients to register themselves,
-book appointments with doctors and access other basic medical services.</h4>
--
+-A healthcare website that provides a smooth and efficient channel for patients to register themselves,
+book appointments with doctors and access other basic medical services.
 <p>For more feature please refer to the E-R Diagram of the project</p>
 
 
