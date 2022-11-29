@@ -31,4 +31,4 @@ outcomes.</p>
 <img alt="MySQL" src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
 
 ## ER Diagram
-<img src="ER_diagram.png" height="70%"/>
+<img src="ER_diagram.jpg" height="70%"/>
