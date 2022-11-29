@@ -21,6 +21,12 @@
              $data=$stmt1->fetch(PDO::FETCH_ASSOC);
           }
      }
+
+     else
+   {    
+             $stmt2 = $conn->query("SELECT * FROM $myDB.patient ORDER BY pid DESC LIMIT 1;");
+             $data=$stmt2->fetch(PDO::FETCH_ASSOC);
+     }
     ?>
 
 <!DOCTYPE html>
@@ -43,13 +49,13 @@
 <body class="flex bg-blue-100 h-full" x-data="{panel:false, menu:true}">
 
 <?php 	
-		$pid = $did = $issue ="";
-    if(isset($_POST['pid']) )
+		$did = $name = $issue ==$symptom"";
+    if(isset($_POST['did']) && isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['symptom']) )
     {  
-      echo "reached";
-        $pid = $_POST["pid"];
-		    $did = $_POST["did"];
+        $did = $_POST["did"];
+		    $name = $_POST["name"];
 		    $issue = $_POST["issue"];
+                 $symptom = $_POST["symptom"];
 		  
 		$servername = "localhost";
 		$username = "Ananya13";
@@ -57,7 +63,7 @@
 		$dbname = "health";
 
 		  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		  $sql = "INSERT INTO $myDB.appointment (`pid`,`did`,`issue`)VALUES('$pid', '$did', '$issue')";
+		  $sql = "INSERT INTO $myDB.appointment (`did`,`name`,`issue`,`symptom`)VALUES('$did', '$name', '$issue','$symptom')";
 		  $stmt2=$conn->prepare($sql);
       $stmt2->execute();
 		$conn = null;
@@ -76,7 +82,7 @@
         <div class="flex-grow flex flex-col justify-between text-black bg-white">
             <nav class="flex flex-col mx-12 my-6 space-y-2">
 
-                <a href="d_pharmacy.php"
+                <a href="pharmacy.php"
                     class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2"
                     :class="{'justify-start': menu, 'justify-center': menu == false}">
                     <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -85,7 +91,7 @@
                     </svg>
                     <span class="ml-2" x-show="menu">Pharmacy</span>
                 </a>
-                <a href="d_pathology.php"
+                <a href="pathology.php"
                     class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2"
                     :class="{'justify-start': menu, 'justify-center': menu == false}">
                     <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -221,32 +227,28 @@
                                             Date
                                           </th>
                                           <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
-                                            Medicines
-                                          </th>
-                                          <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
-                                           Test
+                                            Prescription
                                           </th>
                                           
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <td class="text-dark   bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                                            Fever
-                                          </td>
-                                          <td class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                                            Kartik
-                                          </td>
-                                          <td class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                                            03.11.2022
-                                          </td>
-                      
-                                          <td class="text-dark   bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                                            Dolo
-                                          </td>
-                                          
-                                        </tr>
-                                      </tbody>
+
+<?php
+ $stmt1 = $conn->query("SELECT * FROM $myDB.prescription WHERE pid=$data['pid']");
+ while ($row1=$stmt1->fetch(PDO::FETCH_ASSOC)) {
+      ?> 
+       
+ 		<tr> <td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['issue'];?>
+ 		</td> <td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['d_name'];?>
+ 		</td><td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['date']; ?>
+ 		</td><td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['pres']; ?>
+</td></tr>
+<?php } ?>
                                     </table>
                                   </div>
                                 </div>
@@ -271,33 +273,33 @@
                                     <tr class=" text-center">
                                         <th
                                             class="text-dark   bg-white   py-5 px-2 text-center text-gray-600 font-bold">
+                                            Doctor's ID
+                                        </th>
+                                        <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
                                             Doctor's Name
                                         </th>
                                         <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
-                                            Specialization
+                                            Specialisation
                                         </th>
                                         <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
                                             Time
-                                        </th>
-                                        <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
-                                            Book Appointments
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
 <?php
- $stmt1 = $conn->query("SELECT * FROM $myDB.doctor");
- while ($row1=$stmt1->fetch(PDO::FETCH_ASSOC)) {
+ $stmt2 = $conn->query("SELECT * FROM $myDB.doctor");
+ while ($row2=$stmt2->fetch(PDO::FETCH_ASSOC)) {
       ?> 
        
  		<tr> <td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
- 		<?php echo $row1['name'];?>
+ 		<?php echo $row2['did'];?>
  		</td> <td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
- 		<?php echo $row1['availability'];?>
+ 		<?php echo $row2['name'];?>
  		</td><td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
- 		<?php echo $row1['specialisation']; ?>
+ 		<?php echo $row2['specialisation']; ?>
  		</td><td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
- 		<button class="mybtn border-primary text-primary bg-green-500 hover:bg-primary inline-block rounded border py-2 px-6 hover:text-white" data-pid="<?php echo $data['pid']; ?>" data-did="<?php echo $row1['did'];?>" data-issue="<?php echo $row1['specialisation'];?>" >Fix Appointment</button>
+ 		<?php echo $row2['availability']; ?>
 </td></tr>
 <?php } ?>
 
@@ -308,64 +310,53 @@
                 </div>
 
 
-<!-- <----------------------------------hidden form------------------------------------------->
-            <section id="mysection" class="hidden">
-                <div class="flex flex-col md:col-span-1 md:row-span-2 bg-white shadow rounded-lg">
-                    <div class="mx-12 my-20">
-                        <div class="sm:mt-0">
-                            <div class="md:grid md:grid-cols-3 md:gap-6">
-                        
-                                <div class="mt-5 md:col-span-2 md:mt-0">
-
-                                    <form  class=" max-h-full" method="POST" >
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Patient's ID</label>
-                                            <input type="text" name="pid" id="pid"
-                                            class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" your name">
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Doctor's ID</label>
-                                            <input type="text" name="eid" id="eid"
-                                            class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" your name">
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Related Issue</label>
-                                            <input type="text" name="issue" id="issue"
-                                            class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" your name">
-                                        </div>
-                                        <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                                            <button type="submit"
-                                            class="inline-flex justify-center rounded-md border border-transparent bg-blue-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-500 ">Confirm</button>
-                                        </div>
-                                
-                                    </form>
-                                </div>
-                            </div>
+<!-- <----------------------------------------Book appointment-------------------------------------------->
+<div class="flex flex-col md:col-span-4 bg-white shadow rounded-lg">
+                    <div class="flex justify-between">
+                        <div>
+                            <h2 class="px-6 py-5 text-xl font-semibold block  border-gray-100">Book Appointment</h2>
                         </div>
-                    </div> 
-                </div>
-            </section>
-        </main>
-    </div>
+                        
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <div>
 
+                        <form class="frm" method="POST">
 
-<!-- <------------------------------------------hidden form---------------------------------------->
+            <div class="overflow-hidden shadow sm:rounded-md">
+              <div class="bg-white px-4 py-5 sm:p-6">
+                <div class="grid grid-cols-6 gap-6">
+
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Doctor's ID</label>
+                    <input type="text" name="did" id="did"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Doctor's Name</label>
+                    <input type="text" name="name" id="name"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Issue</label>
+                    <input type="text" name="issue" id="issue"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Symptoms</label>
+                    <input type="text" name="symptom" id="symptom"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
+
+ 		<div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <button type="submit"
+                  class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+              </div>
+		</form>
+		</div>
+		</div>
  
 </body>
 
-<script src="jquery-3.6.1.min.js"></script>
-<script>
-    $(document).ready(function(){
-     $('.mybtn').click(function(){
-
-         $("#pid").val($(this).data("pid"));
-         $("#did").val($(this).data("did"));
-         $("#issue").val($(this).data("issue"));
-         $('#mysection').removeClass('hidden');
-         
-        
-     });
-    });
-</script>
 
 </html>

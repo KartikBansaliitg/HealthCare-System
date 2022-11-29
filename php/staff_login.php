@@ -32,7 +32,7 @@
                     Login to your account
                 </p>
 
-                <a href="staff_register.php">
+                <a href="employee_register.php">
                 <p
                     tabindex="0"
                     class="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500"

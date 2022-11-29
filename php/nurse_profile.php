@@ -9,7 +9,7 @@
          $email=$_POST["email"];
          $password=$_POST["password"];
          
-         $stmt1 = $conn->query("SELECT pass_wrd FROM $myDB.nurse WHERE email='$email'");
+         $stmt1 = $conn->query("SELECT pass_wrd FROM $myDB.employee WHERE email='$email'");
          $val=$stmt1->fetch(PDO::FETCH_ASSOC);
          if($val["pass_wrd"]!=$password)
           {
@@ -17,12 +17,17 @@
           exit();
           }
           else {
-             $stmt1 = $conn->query("SELECT * FROM $myDB.nurse WHERE email='$email' AND pass_wrd='$password';");
+             $stmt1 = $conn->query("SELECT * FROM $myDB.nurse N JOIN $myDB.employee E WHERE E.email='$email' AND E.pass_wrd='$password' AND N.eid=E.eid;");
              $data=$stmt1->fetch(PDO::FETCH_ASSOC);
           }
      }
-    ?>
 
+     else
+   {    
+             $stmt2 = $conn->query("SELECT * FROM $myDB.nurse N JOIN $myDB.employee E ORDER BY N.did DESC LIMIT 1;");
+             $data=$stmt2->fetch(PDO::FETCH_ASSOC);
+     }
+    ?>
 
     <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +39,7 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="logo.png">
+   <link rel="icon" type="image/x-icon" href="logo.png">
     <link href="style.css" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,6 +47,7 @@
 </head>
 
 <body class="flex bg-green-100 h-full" x-data="{panel:false, menu:true}">
+
     <aside class="flex flex-col min-h-screen" :class="{'hidden sm:flex sm:flex-col': window.outerWidth > 500}">
         <a href="#" class="inline-flex items-start justify-start pt-2 h-20 w-full bg-white shadow-md">
 
@@ -103,7 +109,7 @@
 
                         <div class="w-full h-96 md:col-span-4 p-4 sm:p-6 lg:p-8 bg-white rounded-lg shadow-md">
                             <div class="flex justify-between">
-                                <span class="text-xl font-semibold block">Employee Profile</span>
+                                <span class="text-xl font-semibold block">Doctor's Profile</span>
                                 <a href="#"
                                     class="-mt-2 text-md font-bold text-white bg-blue-400 rounded-full px-5 py-2 hover:bg-blue-500">Edit</a>
                             </div>
@@ -168,11 +174,6 @@
                     </div>
 
                 </div>
-            <!-- </section> -->
-            
 
-        </main>
-    </div>
 </body>
-
 </html>

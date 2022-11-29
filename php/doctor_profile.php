@@ -9,7 +9,7 @@
          $email=$_POST["email"];
          $password=$_POST["password"];
          
-         $stmt1 = $conn->query("SELECT pass_wrd FROM $myDB.doctor WHERE email='$email'");
+         $stmt1 = $conn->query("SELECT pass_wrd FROM $myDB.employee WHERE email='$email'");
          $val=$stmt1->fetch(PDO::FETCH_ASSOC);
          if($val["pass_wrd"]!=$password)
           {
@@ -17,12 +17,17 @@
           exit();
           }
           else {
-             $stmt1 = $conn->query("SELECT * FROM $myDB.doctor WHERE email='$email' AND pass_wrd='$password';");
+             $stmt1 = $conn->query("SELECT * FROM $myDB.doctor D JOIN $myDB.employee E WHERE E.email='$email' AND E.pass_wrd='$password' AND D.eid=E.eid;");
              $data=$stmt1->fetch(PDO::FETCH_ASSOC);
           }
      }
-    ?>
 
+     else
+   {    
+             $stmt2 = $conn->query("SELECT * FROM $myDB.doctor D JOIN $myDB.employee E ORDER BY D.did DESC LIMIT 1;");
+             $data=$stmt2->fetch(PDO::FETCH_ASSOC);
+     }
+    ?>
 
     <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +47,30 @@
 </head>
 
 <body class="flex bg-green-100 h-full" x-data="{panel:false, menu:true}">
+
+<?php 	
+		$did = $pid = $dname=$issue ==$pres="";
+    if(isset($_POST['did']) && isset($_POST['pid']) && isset($_POST['dname']) && isset($_POST['issue']) && isset($_POST['pres']))
+    {  
+                    $did = $_POST["did"];
+		    $pid = $_POST["pid"];
+		    $dname = $_POST["dname"];
+		    $issue = $_POST["issue"];
+                    $pres = $_POST["pres"];
+		  
+		$servername = "localhost";
+		$username = "Ananya13";
+		$password = "Ananya@13";
+		$dbname = "health";
+
+		  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		  $sql = "INSERT INTO $myDB.prescription ('$did', '$pid','dname', '$issue','$pres')";
+		  $stmt2=$conn->prepare($sql);
+      $stmt2->execute();
+		$conn = null;
+    }	
+?>
+
     <aside class="flex flex-col min-h-screen" :class="{'hidden sm:flex sm:flex-col': window.outerWidth > 500}">
         <a href="#" class="inline-flex items-start justify-start pt-2 h-20 w-full bg-white shadow-md">
 
@@ -103,7 +132,7 @@
 
                         <div class="w-full h-96 md:col-span-4 p-4 sm:p-6 lg:p-8 bg-white rounded-lg shadow-md">
                             <div class="flex justify-between">
-                                <span class="text-xl font-semibold block">Employee Profile</span>
+                                <span class="text-xl font-semibold block">Doctor's Profile</span>
                                 <a href="#"
                                     class="-mt-2 text-md font-bold text-white bg-blue-400 rounded-full px-5 py-2 hover:bg-blue-500">Edit</a>
                             </div>
@@ -169,129 +198,114 @@
 
                 </div>
 <section class="grid md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-3 xl:grid-flow-col gap-6">
-                <div class="flex flex-col md:col-span-4 md:row-span-1 bg-white shadow rounded-lg">
+                
+                        <div class="w-full md:w-3/5 p-8 bg-white lg:ml-4 rounded-lg shadow-md">
+                            
+                                <div class="flex justify-between">
+                                  <div>
+                                    <h2 class="text-xl font-semibold block">Medical History</h2>
+                                  </div>
+                                  
+                                </div>
+                                <div class="p-4 flex-grow">
+                                  <div>
+                                    <table class="w-full table-auto">
+                                      <thead class="border-b">
+                                        <tr class=" text-center">
+                                          <th class="text-dark   bg-white   py-5 px-2 text-center text-gray-600 font-bold">
+                                            Patient ID
+                                          </th>
+                                          <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
+                                            Patient Name
+                                          </th>
+                                          <th class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-bold">
+                                            Gender
+                                          </th>
+                                          <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
+                                            Issue
+                                          </th>
+                                          
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+
+<?php
+ $stmt1 = $conn->query("SELECT * FROM $myDB.appointment WHERE did=$data['did']");
+ while ($row1=$stmt1->fetch(PDO::FETCH_ASSOC)) {
+      ?> 
+       
+ 		<tr> <td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['pid'];?>
+ 		</td> <td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['name'];?>
+ 		</td><td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['gender']; ?>
+ 		</td><td class="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+ 		<?php echo $row1['issue']; ?>
+</td></tr>
+<?php } ?>
+                                    </table>
+                                  </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+
+ <div class="flex flex-col md:col-span-4 bg-white shadow rounded-lg">
                     <div class="flex justify-between">
                         <div>
-                            <h2 class="px-6 py-5 text-xl font-semibold block  border-gray-100">Recent Appointment</h2>
+                            <h2 class="px-6 py-5 text-xl font-semibold block  border-gray-100">Write Prescription</h2>
                         </div>
                         
                     </div>
                     <div class="p-4 flex-grow">
                         <div>
+                        <form class="frm" method="POST">
 
-                            <!-- ====== Table Section Start -->
+            <div class="overflow-hidden shadow sm:rounded-md">
+              <div class="bg-white px-4 py-5 sm:p-6">
+                <div class="grid grid-cols-6 gap-6">
 
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Doctor's ID</label>
+                    <input type="text" name="did" id="did"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
 
-                            <table class="w-full table-auto">
-                                <thead class="border-b">
-                                    <tr class=" text-center">
-                                        <th class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-bold">
-                                            Patient's ID
-                                        </th>
-                                        <th
-                                            class="text-dark   bg-white   py-5 px-2 text-center text-gray-600 font-bold">
-                                            Patients's Name
-                                        </th>
-                                        <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
-                                            Gender
-                                        </th>
-                                        
-                                        <th class="text-dark   bg-white  py-5 px-2 text-center text-gray-600 font-bold">
-                                         Prescription
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                 <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Patient's ID</label>
+                    <input type="text" name="pid" id="pid"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Doctor's Name</label>
+                    <input type="text" name="dname" id="dname"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Issue</label>
+                    <input type="text" name="issue" id="issue"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">Prescription</label>
+                    <input type="text" name="pres" id="pres"
+                      class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" Enter here">
+                  </div>
 
+                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <button type="submit"
+                  class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+              </div>
 
-                                    <tr>
-                                        <td
-                                            class="text-dark   bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                                            Kartik Bansal
-                                        </td>
-                                        <td
-                                            class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                                            Male
-                                        </td>
-                                        <td
-                                            class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                                            Cold
-                                        </td>
-
-                                        
-
-                                        <td
-                                            class="text-dark bg-white py-5 px-2 text-center text-base font-bold">
-                                            <a href="#"
-                                                class=" bg-purple-400 hover:bg-purple-500 text-white text-md  inline-block rounded border py-2 px-6 hover:text-primary">
-                                                Clear
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <!-- ====== Table Section End -->
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <section id="mysection" class="hidden">
-                <div class="flex flex-col md:col-span-1 md:row-span-2 bg-white shadow rounded-lg">
-                    <div class="mx-12 my-20">
-                        <div class="sm:mt-0">
-                            <div class="md:grid md:grid-cols-3 md:gap-6">
-                        
-                                <div class="mt-5 md:col-span-2 md:mt-0">
-
-                                    <form  class=" max-h-full" method="POST" >
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Patient's ID</label>
-                                            <input type="text" name="pid" id="pid"
-                                            class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" your name">
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Doctor's ID</label>
-                                            <input type="text" name="eid" id="eid"
-                                            class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" your name">
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Related Issue</label>
-                                            <input type="text" name="issue" id="issue"
-                                            class="mt-1 block w-full h-12 rounded-md border-2 shadow-sm" placeholder=" your name">
-                                        </div>
-                                        <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                                            <button type="submit"
-                                            class="inline-flex justify-center rounded-md border border-transparent bg-blue-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-500 ">Confirm</button>
-                                        </div>
-                                
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </section>
-        </main>
-    </div>
+		</form>
+		</div>
+		</div>
 </body>
-<script src="jquery-3.6.1.min.js"></script>
-<script>
-    $(document).ready(function(){
-     $('.mybtn').click(function(){
-
-         $("#pid").val($(this).data("pid"));
-         $("#did").val($(this).data("did"));
-         $("#issue").val($(this).data("issue"));
-         $('#mysection').removeClass('hidden');
-         
-        
-     });
-    });
-</script>
 </html>

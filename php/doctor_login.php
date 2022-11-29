@@ -32,7 +32,7 @@
                     Login to your account
                 </p>
 
-                <a href="doctor_register.php">
+                <a href="employee_register.php">
                 <p
                     tabindex="0"
                     class="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500"
@@ -49,7 +49,7 @@
 
             </div>
          
-            <form class="frm" action="doctor_profile.php" method="POST">
+            <form class="frm" action=doctor_profile.php" method="POST">
             <div class="mt-4 mb-5 ml-2">
                 
                 <div>

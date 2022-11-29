@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="logo.png">
+   <link rel="icon" type="image/x-icon" href="logo.png">
   <link href="style.css" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -67,6 +67,22 @@ $dbname = "health";
               d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
           </svg>
           <span class="ml-2" x-show="menu">Pathology</span>
+        </a>
+        <a href="room.php"
+          class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          <span class="ml-2" x-show="menu">Rooms</span>
+        </a>
+        <a href="view_employee.php"
+          class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          <span class="ml-2" x-show="menu">Employees</span>
         </a>
         
       </nav>
@@ -193,7 +209,7 @@ $dbname = "health";
 
 <!-- <----------------------------php for appointments----------------------------->
 <?php
-$stmt6 = $conn->query("SELECT * FROM $myDB.appointment T1, $myDB.patient T2 WHERE T1.pid=T2.pid");
+$stmt6 = $conn->query("SELECT * FROM $myDB.appointment");
  while ($row1=$stmt6->fetch(PDO::FETCH_ASSOC)) {
       ?> 
        
@@ -202,9 +218,9 @@ $stmt6 = $conn->query("SELECT * FROM $myDB.appointment T1, $myDB.patient T2 WHER
                     </td><td class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-medium">
                        <?php echo $row1['did']?>
                     </td><td class="text-dark    bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                     <?php echo $row1['T2.name']?>
+                     <?php echo $row1['name']?>
                     </td><td class="text-dark   bg-white py-5 px-2 text-center text-gray-600 font-medium">
-                     <?php echo $row1['T2.gender']?>
+                     <?php echo $row1['gender']?>
                     </td></tr>
 <?php } ?>
 
@@ -232,6 +248,9 @@ $stmt6 = $conn->query("SELECT * FROM $myDB.appointment T1, $myDB.patient T2 WHER
                 <thead class="border-b">
                   <tr class=" text-center">
                     <th class="text-dark text-left  bg-white pl-8   py-5 px-2  text-gray-600 font-bold">
+                      Did
+                    </th>
+                    <th class="text-dark text-left  bg-white pl-8   py-5 px-2  text-gray-600 font-bold">
                       Name
                     </th>
                     <th class="text-dark text-left  bg-white pl-8   py-5 px-2  text-gray-600 font-bold">
@@ -255,6 +274,8 @@ $stmt7 = $conn->query("SELECT * FROM $myDB.doctor");
       ?> 
        
  		<tr><td class="text-dark pl-8 bg-white py-5 px-2 text-left text-gray-600 font-medium">
+                      <?php echo $row2['did']?>
+ 		                <td class="text-dark pl-8 bg-white py-5 px-2 text-left text-gray-600 font-medium">
                       <?php echo $row2['name']?>
                     </td><td class="text-dark    bg-white py-5 px-2 text-left text-gray-600 font-medium">
                       <?php echo $row2['gender']?>
@@ -268,8 +289,6 @@ $stmt7 = $conn->query("SELECT * FROM $myDB.doctor");
                   
                 </tbody>
               </table>
-
-              <!-- ====== Table Section End -->
 
             </div>
           </div>

@@ -17,7 +17,6 @@ outcomes.</p>
 - The patient can register himself/herself by filling up a registration form with his basic personal details. If the patient has previously visited the hospital then there is no need to register again.
 - The employee can register himself/herself by filling up a registration form with his basic personal details. If the employee has previously visited the hospital then there is no need to register again. There is some unique information to be filled in according to the employee's role(doctor, nurse, staff).
 - The patient can choose the doctor from the list of available doctors to book an appointment and mention the issue and symptoms.
-- The patient can also get a room based on his budget from the list of different types of rooms available.
 - The patient can also get medicines from the hospital and also undergo different tests present in the hospital.
 - The doctor can see all the appointments booked with him and accordingly provide the necessary treatment.
 
@@ -33,5 +32,3 @@ outcomes.</p>
 
 ## ER Diagram
 <img src="ER_diagram.png" height="70%"/>
-<hr>
-<p>&nbsp&nbsp&nbsp&nbsp If you want to have a look at the project, you can go to the <i>Screenshots</i> folder of the repository.</p>
