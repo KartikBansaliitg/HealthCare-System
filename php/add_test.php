@@ -21,7 +21,7 @@ $password = "Ananya@13";
 $dbname = "health";
    
  $stmt1 = $conn->query("SELECT * FROM $myDB.test");
-
+/
  echo '<div class="px-4 mt-12 ml-8">
             <h3 class="text-4xl font-medium leading-6 text-red-600">Pathology</h3>
         </div>

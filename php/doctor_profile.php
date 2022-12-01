@@ -9,7 +9,7 @@
          $email=$_POST["email"];
          $password=$_POST["password"];
          
-         $stmt1 = $conn->query("SELECT pass_wrd FROM $myDB.employee WHERE email='$email'");
+         $stmt1 = $conn->query("SELECT * FROM $myDB.employee WHERE email='$email'");
          $val=$stmt1->fetch(PDO::FETCH_ASSOC);
          if($val["pass_wrd"]!=$password)
           {
@@ -64,7 +64,7 @@
 		$dbname = "health";
 
 		  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		  $sql = "INSERT INTO $myDB.prescription ('$did', '$pid','dname', '$issue','$pres')";
+		  $sql = "INSERT INTO $myDB.prescription ('$did', '$pid','$dname', '$issue','$pres')";
 		  $stmt2=$conn->prepare($sql);
       $stmt2->execute();
 		$conn = null;
